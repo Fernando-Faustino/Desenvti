@@ -33,6 +33,8 @@
             <br />
             <asp:FileUpload ID="fupFoto" runat="server" /><br />
             <asp:Button ID="btnCadastrar" runat="server" Text="Cadastrar" OnClick="btnCadastrar_Click" />
+            <asp:Button ID="btnVoltar" runat="server" Text="Voltar" OnClick="btnVoltar_Click" />
+            <asp:Panel ID="panelUsuariosCasastrados" runat="server" Visible="false">
             <br />
             <h4>Usuários Cadastrados</h4>
             <asp:GridView ID="gridUsuario" OnRowCommand="gridUsuario_RowCommand" runat="server" AutoGenerateColumns="False" DataKeyNames="codigo" DataSourceID="SqlDataSourceUsuario" AllowPaging="True" AllowSorting="True">
@@ -56,7 +58,10 @@
             <asp:HiddenField ID="hiddenfildCodigo" runat="server" Value="0" />
 
             <asp:SqlDataSource runat="server" ID="SqlDataSourceUsuario" ConnectionString='<%$ ConnectionStrings:DEV0102ConnectionString %>' SelectCommand="select '~/fotoUsuario/' + nomeFoto as caminhoFoto, * from tabusuario"></asp:SqlDataSource>
-        </div>
+            <asp:Button ID="btnEnviarParabéns" runat="server" Text="Enviar Parabéns" OnClick="btnEnviarParabéns_Click1" />
+            
+            </asp:Panel>
+            </div>
     </form>
 </body>
 </html>

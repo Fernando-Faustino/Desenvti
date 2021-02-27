@@ -20,9 +20,10 @@
             <br />
             <asp:Button ID="btnLogin" runat="server" Text="Login" OnClick="btnLogin_Click" />
             <br />
-            <asp:LinkButton ID="btnEsqueciSenha" runat="server" Text="Esqueci a senha" OnClick="btnEsqueciSenha_Click"></asp:LinkButton>
-
-        </div>
+            <asp:LinkButton ID="btnEsqueciSenha" runat="server" Text="Esqueci a senha" OnClick="btnEsqueciSenha_Click"></asp:LinkButton> <br />
+            <asp:Button ID="btnCadastarSe" runat="server" Text="Cadastrar-se" OnClick="btnCadastarSe_Click" />
+            <asp:Button ID="btnVoltar" runat="server" Text="Voltar" OnClick="btnVoltar_Click" />
+            </div>
     </form>
 </body>
 </html>

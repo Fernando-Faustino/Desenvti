@@ -14,7 +14,20 @@ namespace DEV0102
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Request.ServerVariables["QUERY_STRING"].Contains("Cadastro"))
+            {
+                panelUsuariosCasastrados.Visible = false;
+            }
 
+            else if (Session["codigoUsuario"] == null)
+
+            {
+                Response.Redirect("Login.aspx");
+            }
+            else
+            {
+                panelUsuariosCasastrados.Visible = true;
+            }
         }
 
         protected void btnConsultaCEP_Click(object sender, EventArgs e)
@@ -87,9 +100,10 @@ namespace DEV0102
                         btnCadastrar.Text = "Cadastrar";
                         gridUsuario.DataBind();
                         LimparCampos();
-                        ExibirMensagem("Usuário Editado com sucesso!");                        
+                        ExibirMensagem("Usuário Editado com sucesso!");
 
                     }
+
                     else
                     {
 
@@ -112,12 +126,13 @@ namespace DEV0102
                         }
                     }
                 }
+
                 else
                 {
                     ExibirMensagem("Selecione uma foto para o usuário");
                 }
 
-            }
+                }
             catch (Exception ex)
             {
                 ExibirMensagem("Erro ao salvar cadastro! Entre em contato com o administrador do sistema.");
@@ -148,7 +163,7 @@ namespace DEV0102
                 //int codigoUsuario = Convert.ToInt32(row.Cells[1].Text);
 
                 usuarioDAL objDal = new usuarioDAL();
-                tabUsuario obj =  objDal.ConsultarUsuarioPorCodigo(codigo);
+                tabUsuario obj = objDal.ConsultarUsuarioPorCodigo(codigo);
 
                 txtBairro.Text = obj.bairro;
                 txtCEP.Text = obj.cep;
@@ -162,6 +177,39 @@ namespace DEV0102
                 btnCadastrar.Text = "Salvar";
                 ExibirMensagem("Liberado para edição!");
             }
+        }
+
+
+        protected void btnEnviarParabéns_Click1(object sender, EventArgs e)
+        {
+
+            try
+            {
+                List<tabUsuario> objList = new List<tabUsuario>();
+
+                usuarioDAL uDal = new usuarioDAL();
+                objList = uDal.listarTodosUsuarios();
+
+                foreach (tabUsuario item in objList)
+                {
+                    Suporte sup = new Suporte();
+                    sup.EnviarEmail("Parabéns", item.email, "Olá" + txtNome + "Desejamos um Feliz Aniversário");
+                }
+            }
+            catch (Exception ex)
+            {
+
+
+            }
+        }
+
+        protected void btnVoltar_Click(object sender, EventArgs e)
+        {
+
+            Response.Redirect("Home.apsx");
+            
+
+
         }
     }
 }
